@@ -1,0 +1,65 @@
+{% extends 'index.html' %}
+{% block content %}
+
+<div class="container" >
+    <div class="col-xl-4">
+        {% if page == 'home' %}
+        <form action="/" method="POST" class="form-group">
+        {% endif %}
+        {% if page == 'updatehome' %}
+        <form action="/update/{{user.id}}" method="POST" class="form-group">
+        {% endif %}
+        <div style="margin-left: 40%; display:inline-block">
+        <form class="form-inline" >
+            <div class="form-group">
+                <label for="">Product Name</label>
+                <input type="text" name="ProductName" class="form-control" placeholder="Enter product name" value={{user.ProductName}}>
+            </div>
+            <div class="form-group">
+                <label for="">Product Price</label>
+                <input type="text" name="ProductPrice" class="form-control" placeholder="Enter product price" value={{user.ProductPrice}}>
+            </div>
+            <div class="form-group">
+                <label for="">Product Weight</label>
+                <input type="text" name="ProductWeight" class="form-control" placeholder="Enter product Weight" value={{user.ProductWeight}}>
+            </div>
+            <div class="form-group">
+                <label for="">Product Origin</label>
+                <input type="text" name="ProductOrigin" class="form-control" placeholder="Enter product Origin " value={{user.ProductOrigin}}>
+            </div>
+            <button class="btn btn-success">Submit</button>
+        </form>
+    </div>
+    </div>
+    <div >
+        <table class="table table-striped">
+            <thead>
+                <th>Product Name</th>
+                <th>Product Price</th>
+                <th>Product Weight</th>
+                <th>Product Origin</th>
+                <th>Delete</th>
+                <th>Update</th>
+
+            </thead>
+            <tbody>
+                {% for i in user1s %}
+                <tr>
+                    <td>{{ i.ProductName }}</td>
+                    <td>{{ i.ProductPrice}}</td>
+                    <td>{{ i.ProductWeight }}</td>
+                    <td>{{ i.ProductOrigin }}</td>
+                    <td>
+                        <a href='/delete/{{i.id}}' class="btn btn-danger">Delete</a>
+                    </td>
+                    <td>
+                        <a href='/update/{{i.id}}' class="btn btn-primary">Update</a>
+                    </td>
+
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
